@@ -1,0 +1,30 @@
+{
+  "rust-analyzer.server.extraEnv": {
+    "CARGO_BUILD_TARGET": "thumbv8m.main-none-eabi",
+    // "CARGO_TARGET_DIR": "./build/bin/espressif-esp32-s3-devkitc-1/cargo",
+    "CARGO_TARGET_DIR": "./build/bin/rpi-pico2/cargo",
+    "CARGO_TARGET_XTENSA_ESP32S3_NONE_ELF_RUNNER": "\"espflash",
+    "CARGO_TARGET_XTENSA_ESP32S3_NONE_ELF_RUSTFLAGS": "--cfg context=\"espressif-esp32-s3-devkitc-1\" --cfg context=\"esp32-s3-wroom-1\" --cfg context=\"esp32s3\" --cfg context=\"esp\" --cfg context=\"ariel-os\" --cfg context=\"default\" -Clink-arg=-Tlinkall.x -C force-frame-pointers --cfg nightly -Cembed-bitcode=yes -Clto=fat -Ccodegen-units=1 -Clink-arg=-Tdefmt.x --cfg context=\"xtensa\"",
+    "CARGO_TARGET_THUMBV8M_MAIN_NONE_EABI_RUSTFLAGS": "--cfg context=\"rpi-pico2\" --cfg context=\"rp235xa\" --cfg context=\"rp\" --cfg context=\"ariel-os\" --cfg context=\"default\" --cfg stable -Cembed-bitcode=yes -Clto=fat -Ccodegen-units=1 -Clink-arg=-Tdefmt.x --cfg armv8m -Clink-arg=--nmagic -Clink-arg=--no-eh-frame-hdr -Clink-arg=-Tlinkme.x -Clink-arg=-Tlink.x -Clink-arg=-Teheap.x -Clink-arg=-Tdevice.x -Clink-arg=-Tisr_stack.x --cfg context=\"cortex-m\" --cfg context=\"cortex-m33f\" --cfg capability=\"hw/usb-device-port\"",
+    // "CONFIG_BOARD": "espressif-esp32-s3-devkitc-1",
+    "CONFIG_BOARD": "rpi-pico2",
+    // "CONFIG_EXECUTOR_STACKSIZE": "8192",
+    // "CONFIG_ISR_STACKSIZE": "2048",
+    // "DEFMT_LOG": "info,",
+    // "OPENOCD_ARGS": "\"\"",
+    // "RUSTUP_TOOLCHAIN": "esp",
+    "SCRIPTS": "./scripts",
+    "context": "rpi-pico2"
+    // "context": "\\\"xtensa\\\"\""
+  },
+  "rust-analyzer.check.extraArgs": [
+    "--config",
+    "./build/imports/ariel-os/ariel-os-cargo.toml",
+    // "-Zbuild-std=core,alloc",
+    "--features=ariel-os/semihosting,ariel-os/single-core,ariel-os/executor-interrupt,ariel-os/rtt-target,ariel-os/panic-printing,ariel-os/defmt,ariel-os/debug-console,ariel-os/usb,ariel-os/usb-ethernet"
+  ],
+  "rust-analyzer.check.command": "clippy",
+  "rust-analyzer.check.features": "all",
+  "rust-analyzer.restartServerOnConfigChange": true,
+  "rust-analyzer.check.allTargets": false,
+}

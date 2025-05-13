@@ -1,0 +1,14 @@
+imports:
+  - git:
+      url: https://github.com/ariel-os/ariel-os
+      commit: 92d3aeac74ba33b3d9ed3dd575ae91a3a227678f
+    dldir: ariel-os
+
+apps:
+  - name: networked-led-toggle
+    env:
+      global:
+        executor_stacksize_required:
+          - "32768"
+    selects:
+      - network
